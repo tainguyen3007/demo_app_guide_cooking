@@ -11,11 +11,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Timer(const Duration(seconds: 3), () {
-    //   Navigator.pushReplacementNamed(context, '/home');
-    // });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +26,18 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
 
           /// Overlay mờ
-          Container(color: Colors.black.withOpacity(0.3)),
-
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Colors.black87, // đậm dưới
+                  Colors.transparent, // nhạt dần lên trên
+                ],
+              ),
+            ),
+          ),
           /// Nội dung ở dưới phân nửa
           Align(
             alignment: Alignment.bottomCenter,
@@ -39,19 +45,43 @@ class _SplashScreenState extends State<SplashScreen> {
               padding: const EdgeInsets.only(bottom: 80), // cách đáy 80px
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Text(
-                    "My App",
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 35),
+                    child: Text(
+                      "Bắt đầu với những món ăn",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   SizedBox(height: 20),
-                  CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xffCEA700),
+                      foregroundColor: Colors.white,  // màu chữ + icon
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8), // bo góc
+                      ),
+                    ),
+                    onPressed: _onClickButton,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      width: 120,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text("Bắt đầu",style: TextStyle(fontSize: 20),),
+                          Icon(Icons.arrow_forward),
+                        ],
+                      ),
+                    ),
+                  )
+
                 ],
               ),
             ),
@@ -59,5 +89,8 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     );
+  }
+  void _onClickButton(){
+    Navigator.pushReplacementNamed(context, '/main');
   }
 }
