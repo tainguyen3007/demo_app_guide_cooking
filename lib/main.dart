@@ -1,6 +1,6 @@
 import 'package:demo_app_food_booking/features/follow_guide_cooking/screens/detail_guide_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:demo_app_food_booking/features/home/screens.dart';
+import 'package:demo_app_food_booking/features/home/screens/home_screen.dart';
 import 'package:demo_app_food_booking/screen/splash_screen.dart';
 
 void main() {
